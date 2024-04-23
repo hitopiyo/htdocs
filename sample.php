@@ -52,3 +52,62 @@ for($i=1; $i<15 ; $i++){
     
 }
 ?>
+
+<?php
+    class Company
+    {
+        protected $name;
+        protected $address;
+        protected $tel;
+
+        public function displayCompany(){
+            echo "会社名：".$this -> name."\n";
+            echo "住所：".$this -> address."\n";
+            echo "電話番号：".$this -> tel."\n";
+        }
+        public function getCompany($name,$address,$tel){
+            $this -> name = $name;
+            $this -> address = $address;
+            $this -> tel = $tel;
+        }
+
+    }
+    class Department extends Company
+    {
+        private $department;
+        private $departmentname;
+
+        public function displayDepartment(){
+            echo "部署名：".$this -> department."\n";
+            echo "部長：" .$this -> departmentname."\n"."\n";
+        }
+        public function getDepartment($department,$departmentname){
+            $this->department=$department;
+            $this->departmentname=$departmentname;
+        }
+
+    }
+
+    $kaisyaA = new Department();
+    $kaisyaB = new Department();
+    $kaisyaC = new Department();
+
+    $kaisyaA -> getCompany("サンプルA","市ヶ谷","080-XXX-xXX");
+    $kaisyaB -> getCompany("サンプルB","池袋","090-XXX-xXX");
+    $kaisyaC -> getCompany("サンプルC","新宿","070-XXX-xXX");   
+    $kaisyaA -> getDepartment("人事","高田");
+    $kaisyaB -> getDepartment("総務","田中");
+    $kaisyaC -> getDepartment("営業","髙橋");
+
+    $kaisyas = [$kaisyaA,$kaisyaB,$kaisyaC];
+
+    /**
+     * $kaisyaA=[ $name => 'サンプルA' , $addres => "市ヶ谷", $tel=>"080-XXX-xXX",$department=>"人事",$departmentname=>"高田"]
+     */
+    foreach($kaisyas as $value){
+        $value->displayCompany();
+        $value->displayDepartment();
+
+        }
+
+?>
